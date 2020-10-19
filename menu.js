@@ -1,4 +1,4 @@
-document.getElementById("menu").innerHTML = "<div class="topnav">
+document.getElementById("menu").innerHTML += "<div class="topnav">
 			  <a class="active" href="#home">Home</a>
 			  <a href="projects.html">GitHub Projects</a>
 			  <a href="Resume">Resume</a>
