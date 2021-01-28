@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<link rel="stylesheet" href="../../css/menu.css">
+		<div class="topnav">
+			<a class="active" href="../../main/index.html">Home</a>
+			<a href="../../main/projects.html">GitHub Projects</a>
+			<a href="../../main/contact.html">Contact</a>
+			<a href="../../main/papers.html">Papers</a>
+		    <div class="dd1">
+		    <button class="dropbtn" onclick="myFunction()"> Tutorials
+		        <i class="Tutorials"></i>
+		    </button>
+		    <div class="dd1-content" id="Dropdown1">
+				<a href="Windows">Windows</a>
+				<a href="../index.html">Linux</a>
+				<a href="Server">Server</a>
+				<a href="./htb.html">HTB</a>
+		    </div>
+		    </div>
+		</div>
+<script>
+	function myFunction() {
+		document.getElementById("Dropdown1").classList.toggle("show");
+	}
+	
+	window.onclick = function(e) {
+		if (!e.target.matches('.dropbtn')) {
+		var myDropdown = document.getElementById("Dropdown1");
+		if (myDropdown.classList.contains('show')) {
+			myDropdown.classList.remove('show');
+		}
+		}
+	}
+</script>
+
+    <script src="https://www.hackthebox.eu/badge/229482"></script>
+    <a class="academy" href="academy-walkthrough.html.html">Academy</a>
+</html>

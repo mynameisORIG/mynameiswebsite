@@ -17,7 +17,24 @@ body {
   font-size: 17px;
 }
 
-.topnav a:hover {
+.dd1 {
+  float: left;
+  overflow: hidden;
+}
+
+.dd1 .dropbtn {
+  cursor: pointer;
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
   background-color: #ddd;
   color: black;
 }
@@ -25,4 +42,31 @@ body {
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
+}
+
+
+.dd1-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dd1-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dd1-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
 }

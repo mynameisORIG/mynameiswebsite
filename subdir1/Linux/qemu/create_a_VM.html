@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<link rel="stylesheet" href="../../../css/menu.css">
+		<div class="topnav">
+			<a class="active" href="../../main/index.html">Home</a>
+			<a href="../../../main/projects.html">GitHub Projects</a>
+			<a href="../../../main/contact.html">Contact</a>
+			<a href="../../../main/papers.html">Papers</a>
+		    <div class="dd1">
+		    <button class="dropbtn" onclick="myFunction()"> Tutorials
+		        <i class="Tutorials"></i>
+		    </button>
+		    <div class="dd1-content" id="Dropdown1">
+				<a href="Windows">Windows</a>
+				<a href="../index.html">Linux</a>
+				<a href="Server">Server</a>
+				<a href="htb.html">HTB</a>
+		    </div>
+		    </div>
+		</div>
+<script>
+function myFunction() {
+  document.getElementById("Dropdown1").classList.toggle("show");
+}
+
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("Dropdown1");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
+    <center><h1>Installing a libvirt/qemu Virtual Machine</h1></center>
+    <h2>Installing Packages </h2>
+    <h3><i>This is assuming you are running a RPM package manager</i></h3> 
+    <pre>
+        <code>
+            sudo dnf -y install bridge-utils libvirt virt-install qemu-kvm virt-top libguestfs-tools
+        </code>
+    </pre>
+    <h2>Start and enable KVM daemon</h2>
+    <p>Starting the libvirtd service and enables the service to start at boot with sytemctl.</p>
+    <pre>
+        <code>
+            sudo systemctl start libvirtd; sudo systemctl enable libvirtd
+        </code>
+    </pre>
+    <h2>Creating the VM</h2>
+    <pre>
+        <code>
+            vi installing_linvirt_qemu_VM.sh
+        </code>
+        <code>
+            graphics="--graphics vnc"
+            os="linux"
+            path1="./Appliance-disk001.qcow2"
+            osVar1="debian9"
+            net='--network network=default'
+
+            virt-install --name=name_of_VM \
+            --vcpus=2 \
+            --memory=2064 \
+            --cdrom=where/the/iso/file/is/located.iso \
+            --disk path=$path1,size=22 \
+            $graphics \
+            $net \
+            --os-type=$os \
+            --os-variant=$osVar1 
+        </code>
+    </pre>
+        <ul>
+            <li>The graphics variable shows what the graphics the libvirt/QEMU machine runs.</li>
+            <li>The os variable is what Operating System the machine runs.</li>
+            <li>The path1 variable is where you want your .qcow2 file to be.</li>
+            <li>The osVar1 variable is what flavor the Operating System is.</li>
+            <li>The --name is the name of the VM</li>
+            <li>The --vcpus is how many cpus the machine uses</li>
+            <li>The --memory is how much ram the VM uses</li>
+            <li>The --cdrom is to help the VM create itself by pointing to where the iso is located.</li>
+            <li>The size is the size of the harddrive</li>
+            <li>The net variable shows how to set the VM to use it's default network, so it can talk to other VM's created. </li>
+        </ul>
+    <h2>Create the network</h2>
+    <h3>This creates the default network and starts and autostarts it up when the computer is built</h3>
+    <pre>
+        <code>
+            virsh net-define usr/share/libvirt/networks/default.xml
+            virsh net-autostart default
+            virsh net-start default
+        </code>
+    </pre>
+    <p>After all that is done, run the script.</p>
+    <p>If you exit out and need to get back into it, run: </p>
+    <pre>
+        <code>
+            virt-viewer --domain-name name_of_VM
+        </code>
+    </pre>
+    <p>If you need to start, stop, or restart a VM</p>
+    <pre>
+        <code>
+            virsh start|shutdown|restart name_of_VM
+        </code>
+    </pre>
+
+
+
+    </body>
+</html>
