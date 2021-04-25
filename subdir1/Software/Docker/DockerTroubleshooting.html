@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<link rel="stylesheet" href="../../../css/menu.css">
+		<div class="topnav">
+			<a class="active" href="../../main/index.html">Home</a>
+			<a href="../../../main/projects.html">GitHub Projects</a>
+			<a href="../../../main/contact.html">Contact</a>
+			<a href="../../../main/papers.html">Papers</a>
+		    <div class="dd1">
+		    <button class="dropbtn" onclick="myFunction()"> Tutorials
+		        <i class="Tutorials"></i>
+		    </button>
+		    <div class="dd1-content" id="Dropdown1">
+				<a href="../index.html">Windows</a>
+				<a href="../../Linux/index.html">Linux</a>
+				<a href="../../Server/index.html">Server</a>
+                <a href="../../HTB/htb.html">HTB</a>
+                <a href="../../Software/Software.html">Software</a>
+                
+		    </div>
+		    </div>
+		</div>
+<script>
+function myFunction() {
+  document.getElementById("Dropdown1").classList.toggle("show");
+}
+
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("Dropdown1");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
+
+<center><h1>Docker Troubleshooting</h1></center>
+<h2>Config File</h2>
+<p> When installing Docker on Linux, it usually doesn't come configured with the config file which is located in <b>/etc/docker/daemon.json</b>. To set that run the following command: <code>echo {} > /etc/docker/daemon.json; dockerd --config-file /etc/docker/daemon.json</code> as root.</p>
+<p>Do this if you receive this error: <b>failed to start daemon: Error initializing network controller: Error creating default "bridge" network: Failed to program NAT chain: ZONE_CONFLICT: 'docker0' already bound to a zone</b>
+<pre>
+    <code>
+        sudo firewall-cmd --permanent --zone=trusted --remove-interface=docker0
+        sudo firewall-cmd --reload
+        sudo systemctl restart docker
+    </code>
+</pre>
+</p>

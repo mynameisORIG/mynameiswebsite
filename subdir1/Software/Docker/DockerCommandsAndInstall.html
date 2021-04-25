@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<link rel="stylesheet" href="../../../css/menu.css">
+		<div class="topnav">
+			<a class="active" href="../../main/index.html">Home</a>
+			<a href="../../../main/projects.html">GitHub Projects</a>
+			<a href="../../../main/contact.html">Contact</a>
+			<a href="../../../main/papers.html">Papers</a>
+		    <div class="dd1">
+		    <button class="dropbtn" onclick="myFunction()"> Tutorials
+		        <i class="Tutorials"></i>
+		    </button>
+		    <div class="dd1-content" id="Dropdown1">
+				<a href="../index.html">Windows</a>
+				<a href="../../Linux/index.html">Linux</a>
+				<a href="../../Server/index.html">Server</a>
+                <a href="../../HTB/htb.html">HTB</a>
+                <a href="../../Software/Software.html">Software</a>
+                
+		    </div>
+		    </div>
+		</div>
+<script>
+function myFunction() {
+  document.getElementById("Dropdown1").classList.toggle("show");
+}
+
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("Dropdown1");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
+<h3>Packages</h3>
+<p>Install these packages to install Docker CE: <b>docker-ce, docker-ce-cli, containerd.io</b></p>
+<h3>Add yourself to the docker group</h3>
+<code>sudo usermod -aG docker $(whoami)</code>
+
+<h3>See docker images</h3>
+<code>docker images</code>
+<h3>Remove docker images</h3>
+<code>docker rmi image_id</code>
+<h3>Install Docker Machine</h3>
+<p>Docker Machine is used to setup a docker swarm. To install docker-machine run this command: 
+<pre>
+    <code>base=https://github.com/docker/machine/releases/download/v0.16.0 ; curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine ; sudo mv /tmp/docker-machine /usr/local/bin/docker-machine ; chmod +x /usr/local/bin/docker-machine</code>
+</pre>
+</p>
