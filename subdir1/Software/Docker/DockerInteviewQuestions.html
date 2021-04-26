@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<link rel="stylesheet" href="../../../css/menu.css">
+		<div class="topnav">
+			<a class="active" href="../../main/index.html">Home</a>
+			<a href="../../../main/projects.html">GitHub Projects</a>
+			<a href="../../../main/contact.html">Contact</a>
+			<a href="../../../main/papers.html">Papers</a>
+		    <div class="dd1">
+		    <button class="dropbtn" onclick="myFunction()"> Tutorials
+		        <i class="Tutorials"></i>
+		    </button>
+		    <div class="dd1-content" id="Dropdown1">
+				<a href="../index.html">Windows</a>
+				<a href="../../Linux/index.html">Linux</a>
+				<a href="../../Server/index.html">Server</a>
+                <a href="../../HTB/htb.html">HTB</a>
+                <a href="../../Software/Software.html">Software</a>
+                
+		    </div>
+		    </div>
+		</div>
+<script>
+function myFunction() {
+  document.getElementById("Dropdown1").classList.toggle("show");
+}
+
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("Dropdown1");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
+
+<center><h1>Docker Interview Questions</h1></center>
+<h3>What's a hypervisor</h3>
+<p>It's a computer softare/firmware/hardware that creates and runs a Virtual Machine</p>
+<h3>What's virtualization</h3>
+<p>It's the process creating software-based, virtual version of soemthing (computer storage, servers, applications, etc.) These virtual environments create a single physical hardware system.</p>
+<h3>What's conatinerization</h3>
+<p>It's an app that's being develpoed and deployed that/s bundles and wrapped together with configuration files and dependencies.</p>
+<h3>What's a Docker Container</h3>
+<p>A docker container inclues the application and all it's dependencies. It also shares the kernel with other containers, running isolated processes in user space on the host Operating System.</p>
+<h3>What's a DockerFile</h3>
+<p>Docker can build images automatically by reading instructions from file called Dockerfile. A dockerfile is a text document that contains commands a user could call on the comand line to assemble an image</p>
+<h3>What's Docker Compose</h3>
+<p>It's a YAML file which contains details about services, networks, and volumes for setting up a Docker application.</p>
+<h3>What's a Docker Swarm</h3>
+<p>It's a native clustering for Docker. It turns a pool of Docker hosts into a single, virtual Docker host.</p>
+<h3>What's a docker Namespace</h3>
+<p>A namespace is one of Linux's features and a important conecept of containers. Namespaces add layer of isolatino in containers.</p>
+<h3>What's a docker machine</h3>
+<p>A docker machine is a tool that lets you install Docker Engine on virtual hosts.</p>
+<h3>How can docker be used</h3>
+<p>Docker can be used by:</p>
+<ol>
+    <li>simplifying configuration</li>
+    <li>Code pipeline management</li>
+    <li>Development productivity</li>
+    <li>Application isolation</li>
+    <li>Debugging Capabilites</li>
+    <li>Multi-tenacy</li>
+    <li>Rapid Deployement</li>
+</ol>
+<h3>How is Docker different from other containerized methods</h3>
+<p>Docker containers are easy to deploy any cloud platform. It gets more applications runningn on the same hardware when compated to other technology.</p>
+<h3>What are the different states of docker containers</h3>
+<p>Created, Running, Restarting, Exited, Dead</p>
+<h3>Can you remove a pause container in docker</h3>
+<p>No, the container needs to be stopped before it is removed.</p>
+<h3>Will Docker compose wait for a current container to be ready to move to a running state next service </h3>
+<p>Docker compose always runs in dependency order</p>

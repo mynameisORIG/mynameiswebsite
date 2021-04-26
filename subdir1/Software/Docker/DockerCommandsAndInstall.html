@@ -44,6 +44,24 @@ window.onclick = function(e) {
 <code>docker images</code>
 <h3>Remove docker images</h3>
 <code>docker rmi image_id</code>
+<h3>Start, Stop, Kill container</h3>
+<code>docker (start|stop|kill) <i>containerID</i></code>
+<h3>Use a conatainer, edit it, and then update it</h3>
+<code>docker commit <i>containerID username/imageName</i></code>
+<h3>Get number of containers running, paused, and/or stopped</h3>
+<code>docker info</code>
+<h3>login to docker repository</h3>
+<code>docker login</code>
+<h3>Create a docker container from an image</h3>
+<code>docker run -it -d <i>imageName</i></code>
+<h3>Accessing a running container</h3>
+<code>docker exec -it <i>containerID</i> bash</code>
+<h3>Push image to dockerhub</h3>
+<code>docker push <i>username/imageName</i></code>
+<h3>Build Dockerfile</h3>
+<code>docker build /path/to/docker_file</code>
+<h3>Monitor docker in production</h3>
+<code>docker stats</code><p>or </p> <code>docker events</code>
 <h3>Install Docker Machine</h3>
 <p>Docker Machine is used to setup a docker swarm. To install docker-machine run this command: 
 <pre>
