@@ -2,39 +2,8 @@
 <html>
 	<body>
 		<link rel="stylesheet" href="../../../css/menu.css">
-		<div class="topnav">
-			<a class="active" href="../../main/index.html">Home</a>
-			<a href="../../../main/projects.html">GitHub Projects</a>
-			<a href="../../../main/contact.html">Contact</a>
-			<a href="../../../main/papers.html">Papers</a>
-		    <div class="dd1">
-		    <button class="dropbtn" onclick="myFunction()"> Tutorials
-		        <i class="Tutorials"></i>
-		    </button>
-		    <div class="dd1-content" id="Dropdown1">
-				<a href="../index.html">Windows</a>
-				<a href="../../Linux/index.html">Linux</a>
-				<a href="../../Server/index.html">Server</a>
-                <a href="../../HTB/htb.html">HTB</a>
-                <a href="../../Software/Software.html">Software</a>
-                
-		    </div>
-		    </div>
-		</div>
-<script>
-function myFunction() {
-  document.getElementById("Dropdown1").classList.toggle("show");
-}
-
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("Dropdown1");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
-    }
-  }
-}
-</script>
+		<script src="../../../javascript/linkssubdir1_3.js"></script>
+<script src="../../../javascript/dropdown_script.js"></script>
 
 <center><h1>Docker Interview Questions</h1></center>
 <h3>What's a hypervisor</h3>
@@ -74,3 +43,5 @@ window.onclick = function(e) {
 <p>No, the container needs to be stopped before it is removed.</p>
 <h3>Will Docker compose wait for a current container to be ready to move to a running state next service </h3>
 <p>Docker compose always runs in dependency order</p>
+
+<footer><p>https://www.youtube.com/watch?v=ViYjHfbmBYA&ab_channel=edureka%21</p></footer>
